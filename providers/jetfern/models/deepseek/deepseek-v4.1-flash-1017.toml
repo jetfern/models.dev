@@ -1,0 +1,31 @@
+# Model id on the API: deepseek-v4.1-flash (deepseek/deepseek-v4.1-flash-1017 and deepseek-v4.1-flash-1017 are accepted aliases).
+# Prices: https://www.jetfern.ai/models/deepseek-v4.1-flash (accessed 2026-11-24): $0.30 input, $0.006 cached input, $1.20 output per 1M.
+# Context: JetFern lists a 262,144-token window (the model supports more); limit.output is capped at it.
+# Reasoning is off unless requested. Effort: reasoning_effort = none|low|medium|high|max (probed live 2026-11-24 on POST /v1/chat/completions;
+# none returns no reasoning tokens, the others return reasoning in message.reasoning_content). Tool calls probed live the same day.
+# Text in and out only. response_format / JSON schema is not offered, so structured_output is unset.
+schema = 2
+base_model = "deepseek/deepseek-v4.1-flash-1017"
+description = "October 17 update of DeepSeek V4.1 Flash with improved reasoning, coding, and agentic tasks, served text-only"
+
+[modalities]
+input = ["text"]
+output = ["text"]
+
+[capabilities]
+reasoning = { supported = true, effort = ["none", "low", "medium", "high", "max"], default = { type = "effort", value = "none" } }
+cache = { implicit = true }
+
+[limit]
+context = 262_144
+output = 262_144
+
+[api.chat-completions]
+compatibility = { reasoning_field = "reasoning_content" }
+
+[cost.text.input]
+price = 0.3
+cache = { read = 0.006 }
+
+[cost.text.output]
+price = 1.2

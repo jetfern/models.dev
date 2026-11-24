@@ -1,0 +1,9 @@
+# JetFern: OpenAI-compatible chat completions (POST /v1/chat/completions, streaming, tool calls) at https://inference.jetfern.ai/v1
+# Model list and prices: https://www.jetfern.ai/models/ (GET /v1/models lists the served ids)
+# - response_format / JSON schema is not offered, so structured_output is unset on every model
+name = "JetFern"
+npm = "@ai-sdk/openai-compatible"
+opencodeai = "@opencode/ai/providers/openai-compatible"
+env = ["JETFERN_API_KEY"]
+api = "https://inference.jetfern.ai/v1"
+doc = "https://www.jetfern.ai/models/"
